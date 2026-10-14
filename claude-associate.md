@@ -176,4 +176,96 @@ Connector: Let's Claude reach an external system you authorize
 - Write the guardrails once, now the discipline applies to every conversation without anyone remembering it
 Anticipate the use cases: format, tone, and guardrail guidance ahead of need
 
-## Maintaining Configurations:
+## Maintaining Configurations: 
+- Review cadence: Set a recurring review for each active project: do the standing instructions still match the current process? Make sure data is up to date
+- Skills versioning: Skills update over time; Anthropic-built and organization-provisioned Skills update automatically, your own custom-uploaded Skills only change when you re-upload them.
+- Memory lifecycle: Treat memory like a working file; review it periodically, edit or delete entries that have gone stale, and export it as a backup before a major change. Accuracy matters more than volume. Configuration is also additive.
+
+## Governance, Risk & Responsible Use
+Diligence: Ownership and veritifcation
+Delegation: Supplies the criteria for judging whether a use case is appropriate at all.
+1. Reversibility: Can a wrong output be caught and undone before it causes harm?
+2. Consequence of error
+3. Need for human creativity or empathy
+4. Accountability
+
+Classifications:
+1. Fully appropriate
+2. Appropriate with human review
+3. Inappropriate
+
+## Skill Trust and Feature-Level Risk: 
+A Skill can access waht you give Claude access to during a session and can take actions through code execution. They can run procedures and can touch data and tools available in the session. 
+1. Source: Who published this skill?
+2. Reach: Skills do not request permission; a Skill inherits whatever access the session it runs in already has. 
+3. Appropriateness: Is this Skill the right tool for the task at all, or is it more than the job needs?
+
+3 outcomes from trust check: enable, escalate, decline
+
+## Data sensitivity, privacy, and feature controls
+Data classification is the habit that prevents leakage, and the feature-specific controls are how you act on classification when persistence or processing is not appropriate.
+SORT DATA INTO: safe to use, what needs review first, and what stays out entirely. 
+
+Redaction and Anonymization failutreS: partial redaction and redaction that breaks the task
+
+### Feature specific controls:
+- Code execution sandbox: code runs in a sandboxed environment, and uploaded files are processed there. Reivew what you upload before running analysis.
+- Memory persistence: Memory carries information across sessions. For sensitive work, that persistence may be what you don't want.
+- Incognito mode: Keeps the session out of your chat history and memory. They still follow your organization's data-retention policies and can appear in organizational data exports. ***This does not make confidential data safe***
+- Org-level memory controls
+
+## Organizational Policies and Diligence as a Habit:
+- Apply governance consistently: a sustained habit, not a one time acknowledgement
+- Audit usage against policy
+- Stay current
+
+## Ethical Implications: Bias, Fairness, Transparency:
+Ethical risk does not announce itself; it hides in ordinary outputs.
+- Recognize bias and fairness risk: prompt, framing, underlying training patterns
+- Transparency and disclosure
+- Reasoning through ambiguous cases: structured approach: naming who is affected, what could go wrong, what the fair outcome looks like, and what disclosure the situation calls for. However, sometimes this might not be enough if the affected population is large. 
+
+## Diagnosing Underperforming Prompts and Outputs:
+Common failure patterns and their root causes:
+1. Under-Specification: The prompt left out context, constraints, or the format. The most common cause, and the cheapest to fix: add what was missing.
+2. Context Overload: A long conversation has approached the context limit, and earlier content has been automatically summarized to make room; detail can compress, so early instructions lose force. Restart or summary not a better prompt.
+3. Wrong feature or model: Asking for a calculation in prose instead of code exectution
+4. Stale configuration: A standing instruction, knowledge source, or Skill has drited out of date -> maintenance
+
+### A diagnostic sequence:
+1. Re-read the prompt against the give components: is anything under-specified?
+2. Check the conversation length
+3. Check the feature and model
+4. Check the configuration
+5. Only then question whether the task is a fit at all
+
+## Adjusting Approach from Feedback and Results: 
+- Build feedback loops into recurring work: Treat each round's output as a signal about the setup
+- Translate Critique into a specific adjustment: Convert it to the precise change
+- Capture what worked
+
+## Optimizing Workflows for Efficiency and Effectiveness:
+- Find redundancy and friction: look for the steps that repeat unnecessarily
+1. Repetition: You paste or type the same thing every run -> saved context or a standing instruction
+2. Correction: You fix the same flaw in every output -> a configuration change so the flaw stops appearing
+3. Variance: Different people running the same task get different results -> a shared Skill of knowledge base so everyone has the same setup
+
+## Consolidate and prompte:
+Consolidate: steps that can run together rather than as separate prompts
+Promote: repeated patterns into Projects and Skills: context that you paste every time belongs in the knoweldge base or standing instructions; a procedure you run evry time belongs in a Skill.
+Measure the improvement: Optimization you cannot measure is hard to justify or sustain. Track the concrete gains: time saved per cycle, revision cycles reduced, consistency improved across people doing the same task, etc.
+
+## The journey, end-to-end:
+1. Product & Model Selection
+2. Prompting
+3. Output Evaluation
+4. Workflow Integration
+5. Configuration
+6. Governance
+7. Troubleshooting
+
+## AI Fluency Thread:
+1. Description: Telling Claude precisely what you want
+2. Discrenment: Critically evaluation what comes back, the habit of checking an output against the signals that should trigger a closer look before you trust it
+3. Diligence: Ownining the output and verifying it, the accountability stance that keeps a human answerable for what Claude produces
+4. Delegation: Deciding what is right for Claude, what stays with a person, and waht the two do together, the judgement that sits underneath workflow and governance decisions.
